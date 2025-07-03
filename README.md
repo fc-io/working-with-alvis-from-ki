@@ -2,7 +2,7 @@
 
 Hopefully, helpful info for KI researchers.
 
-How to get started working with AI on the Alvis supercomputer.
+How to get started developing AI on the Alvis supercomputer.
 
 ## Get Access
 
