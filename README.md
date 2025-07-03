@@ -36,6 +36,7 @@ column -t
 
 example:
 ```bash
+# example:
 $ sinfo [as above...]
 NODE       STATE  GRES           GRES-USED      CPUs  MEM(MB)
 alvis3-01  idle   gpu:A100:4     gpu:A100:0     64    512000
