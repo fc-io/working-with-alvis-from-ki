@@ -4,6 +4,8 @@ Hopefully, helpful info for KI researchers.
 
 How to get started developing AI on the Alvis supercomputer.
 
+This is for doing variable interactive development. If you need long running jobs use sbatch.
+
 ## Get Access
 
 Apply for acess at https://supr.naiss.se/
@@ -33,8 +35,6 @@ awk 'BEGIN { printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
                           $1,$2,$3,$4,$5,$6 }' |
 column -t
 ```
-
-example:
 ```bash
 # example:
 $ sinfo [as above...]
@@ -58,6 +58,8 @@ alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
 
 ## Get a node with one GPU
 
+### Get your project id
+
 First, get your project id. You can use `projinfo` to find it.
 
 ```bash
@@ -74,7 +76,7 @@ NAISS1234-prj-id          18.97                  250      alvis
     my_user               18.97   
 ```
 
-then
+### Get an interactive allocation
 
 ```bash
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
