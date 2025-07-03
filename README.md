@@ -26,7 +26,7 @@ However, when working from home you need a sutable VPN. Sadly the KI VPN won't h
 sinfo --Node --states=idle,mix --noheader \
       -O NodeList:12,StateCompact:8,Gres:90,GresUsed:90,CPUs:21,Memory:10 |
 awk 'BEGIN { printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
-                   "NODE","STATE","GRES","GRES-USED","CPUs","MEM(MB)" }
+                   "NODE","STATE","GRES","GRES-USED","CPUs","MEM(MiB)" }
      $2!="plnd" && $3~/gpu:A100/ {
                    sub(/\(.*/,"",$3); sub(/\(.*/,"",$4);
                    printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
