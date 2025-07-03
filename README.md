@@ -54,6 +54,7 @@ alvis3-36  mix    gpu:A100:4     gpu:A100:2     64    256000
 alvis3-37  mix    gpu:A100:4     gpu:A100:2     64    256000
 alvis3-39  mix    gpu:A100fat:4  gpu:A100fat:4  64    1024000
 alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
+...
 ```
 
 ## Get a node with one GPU
