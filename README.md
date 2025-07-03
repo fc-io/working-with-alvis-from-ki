@@ -57,8 +57,27 @@ alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
 ```
 
 ## Get a node with one GPU
+
+First, get your project id. You can use `projinfo` to find it.
+
 ```bash
-salloc -A [MY_PROJECT_ID_FROM_NAISS] -N1 --gres=gpu:A100:1 --time=3:00:00
+projinfo
+```
+
+```bash
+#example
+$ projinfo
+ Project                Used[h]         Allocated[h]      Queue
+    User
+---------------------------------------------------------------
+NAISS1234-prj-id          18.97                  250      alvis
+    my_user               18.97   
+```
+
+then
+
+```bash
+salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
 ## shell into the allocated node (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
