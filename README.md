@@ -8,7 +8,7 @@ How to get started developing AI on the Alvis supercomputer.
 
 Apply for acess at https://supr.naiss.se/
 
-You need to be at least at the level of phd (or get help from your supervior) to be granted the default allocation.
+You need to be at least at the level of phd (or get help from your supervior) to be granted an allocation.
 
 ## Caveats
 
