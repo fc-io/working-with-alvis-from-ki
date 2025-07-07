@@ -291,9 +291,25 @@ $ curl http://localhost:8000/v1/models
 {"object":"list","data":[{"id":"./models/Qwen3-32B-FP8","object":"model","created":1751877546,"owned_by":"vllm","root":"./models/Qwen3-32B-FP8","parent":null,"max_model_len":40960,"permission":[{"id":"modelperm-afe147129dea4bffb7d5cdc88052b790","object":"model_permission","created":1751877546,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}% 
 ```
 
-### Congrats
+## Congrats!
 
 You should now be able to connect to your model on your local machine as if it were on your own localhost. Happy promting.
+
+## Stop GPU Allocation
+
+You can recover any GPU hours left if you are done before the requested time has run out.
+
+First find the jobid.
+
+```bash
+squeue -u $USER -O jobid,state,nodelist
+```
+
+Then cancel it.
+
+```bash
+scancel <jobid>
+```
 
 ## Caveats
 
