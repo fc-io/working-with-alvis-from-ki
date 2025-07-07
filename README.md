@@ -92,18 +92,16 @@ NAISS1234-prj-id          18.97                  250      alvis
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
-## shell into the allocated node (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
+### shell into the allocated node (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
 ```
 srun --pty bash -l 
 ```
-# if you want to connect from another node change the jobid to the 
-## first, quick check, to see all running jobs
-## then use srun to connect to your instance/job
+### if you want an additional connection from another node
+#### first, quick check, to see all running jobs
+
 ```
 squeue -u $USER -O jobid,state,nodelist
 ```
-
-
 
 ```
 #example:
@@ -112,11 +110,12 @@ JOBID               STATE               NODELIST
 4732902             COMPLETING          alvis3-35           
 ```
 
+#### then use srun to connect to your instance/job
 ```
 srun --jobid=<job_id> --overlap --pty bash -l 
 ```
 
-# check that you have the right allocation
+### check that you have the right allocation
 ```
 nvidia-smi
 ```
@@ -147,17 +146,18 @@ Mon Jul  7 09:03:26 2025
 #0/81920MiB indicate that we have a a100fat allocated and ready to use
 ```
 
-## download/setup your dev environment
+## Run inference
+### download/setup your dev environment
 
 TODO: add an example of downloading models and containers
 
-## cd to container location
+### cd to container location
 
 ```
 cd /mimer/NOBACKUP/groups/<project_id>
 ```
 
-## start container
+### start container
 ```
 apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_container> <name_and_path_to_appcontainer>
 ```
@@ -167,7 +167,7 @@ apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_containe
 $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 ```
 
-## start vllm with tool use and tool auto support
+### start vllm with tool use and tool auto support
 
 TODO: add a multi node example
 
@@ -176,16 +176,16 @@ TODO: add a multi node example
 $ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
 ```
 
-## after "INFO: Application startup complete." you can test by curling the http server from the host of the container
+### after "INFO: Application startup complete." you can test by curling the http server from the host of the container
 
 but you can also skip this and test from your local machine
 
 ``` bash
 curl http://$(hostname -I | awk '{print $1}'):8000/v1/models
 ```
-## test on your local machine
+### test on your local machine
 
-### find out the hostname on the remote gpu instance
+#### find out the hostname on the remote gpu instance
 
 ```
 hostname
@@ -197,7 +197,7 @@ $ hostname
 > alvis4-41
 
 ```
-### setup tunnel on your local machine
+#### setup tunnel on your local machine
 ```
 ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_remote>
 ```
@@ -207,7 +207,7 @@ example:
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
-## test from your local machine
+### test from your local machine
 ```
 curl http://localhost:8000/v1/models
 ```
