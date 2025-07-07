@@ -114,7 +114,7 @@ alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
 ...
 ```
 
-## Get a node with one GPU
+## Get a node with one (to four) GPU(s)
 
 TODO: add a multi-node example
 
@@ -142,6 +142,10 @@ NAISS1234-prj-id          18.97                  250      alvis
 ```bash
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
+
+You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs on that node. I.e `--gres=gpu:A100:4` for four.
+
+You can also change the `:A100` part if you want a node with different GPUs.
 
 ### shell into the allocated node 
 
