@@ -139,13 +139,17 @@ NAISS1234-prj-id          18.97                  250      alvis
 
 ### Get an interactive allocation
 
+Allocate yourself a GPU node.
+
+It is usually better to `salloc` than to run `srun` right off, as the node now assigned will persist independently of the login node.
+
 ```bash
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
 You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs on that node. I.e `--gres=gpu:A100:4` for four.
 
-You can also change the `:A100` part if you want a node with different GPUs.
+You can also change the `:A100` part if you want a node with a different type of GPU.
 
 See the [docs](https://slurm.schedmd.com/salloc.html) for more nice arguments.
 
