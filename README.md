@@ -173,6 +173,8 @@ It is usually better to `salloc` than to run `srun` right off, as the node now a
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
+If a node of the specified type isn't available, you will be automatically queued.
+
 You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs on that node. I.e `--gres=gpu:A100:4` for four.
 
 You can also change the `:A100` part if you want a node with a different type of GPU.
