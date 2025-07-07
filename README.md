@@ -132,7 +132,10 @@ NAISS1234-prj-id          18.97                  250      alvis
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
-### shell into the allocated node (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
+### shell into the allocated node 
+
+(don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
+
 ```bash
 srun --pty bash -l 
 ```
