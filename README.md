@@ -16,9 +16,9 @@ You need to be at least at the level of phd (or get help from your supervior) to
 
 ### Working remotly (VPN)
 
-When ssh-ing to alvis you need to be on sunet. You are automatically on sunet on the KI wired network or eduroam. 
+When ssh-ing to alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
 
-However, when working from home you need a sutable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN (eduVPN).
+However, when working from home you need a suitable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN (eduVPN).
 
 ### GPUs on Alvis
 
