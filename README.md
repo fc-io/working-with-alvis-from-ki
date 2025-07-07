@@ -66,7 +66,7 @@ alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
 
 ### Get your project id
 
-First, get your project id. You can use `projinfo` to find it.
+First, get your project id. You can use `projinfo` to find it if you don't already know it.
 
 ```bash
 projinfo
