@@ -180,7 +180,7 @@ Mon Jul  7 09:03:26 2025
 |  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
 
-# 0/81920MiB indicate that we have a a100fat allocated and ready to use
+# 0MiB/81920MiB indicate that we have an a100fat allocated and ready to use
 ```
 
 ## Run inference
