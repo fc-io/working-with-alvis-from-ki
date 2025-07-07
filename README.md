@@ -6,8 +6,6 @@ Hopefully, helpful info for budding AI researchers at KI.
 
 This is for doing interactive development. These instructions are not for you if you need long-running jobs or already have an established use case. 
 
-These tips are definitly for you if you felt the instructions at [C3SE](https://www.c3se.chalmers.se/documentation/submitting_jobs/interactive_jobs/) a bit lacking.
-
 ## Get Access
 
 Apply at <https://supr.naiss.se/>.
