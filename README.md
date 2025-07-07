@@ -112,8 +112,8 @@ squeue -u $USER -O jobid,state,nodelist
 ```
 
 ```bash
-#example:
-# squeue -u $USER -O jobid,state,nodelist
+# example:
+$ squeue -u $USER -O jobid,state,nodelist
 JOBID               STATE               NODELIST            
 4732902             COMPLETING          alvis3-35           
 ```
@@ -128,7 +128,7 @@ srun --jobid=<job_id> --overlap --pty bash -l
 nvidia-smi
 ```
 ```bash
-#example
+# example:
 $ nvidia-smi
 Mon Jul  7 09:03:26 2025       
 +-----------------------------------------------------------------------------------------+
@@ -173,7 +173,7 @@ apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_containe
 ```
 
 ```bash
-#example:
+# example:
 $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 ```
 
@@ -202,7 +202,7 @@ hostname
 ```
 
 ```bash
-#example:
+# example:
 $ hostname
 alvis4-41
 ```
@@ -213,7 +213,7 @@ ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_re
 ```
 
 ```bash
-#example:
+# example:
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
@@ -223,7 +223,7 @@ curl http://localhost:8000/v1/models
 ```
 
 ```bash
-#example:
+# example:
 $ curl http://localhost:8000/v1/models
 {"object":"list","data":[{"id":"./models/Qwen3-32B-FP8","object":"model","created":1751877546,"owned_by":"vllm","root":"./models/Qwen3-32B-FP8","parent":null,"max_model_len":40960,"permission":[{"id":"modelperm-afe147129dea4bffb7d5cdc88052b790","object":"model_permission","created":1751877546,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}% 
 ```
