@@ -101,17 +101,17 @@ salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
 
 ### shell into the allocated node (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
-```
+```bash
 srun --pty bash -l 
 ```
 ### if you want an additional connection from another node
 #### first, quick check, to see all running jobs
 
-```
+```bash
 squeue -u $USER -O jobid,state,nodelist
 ```
 
-```
+```bash
 #example:
 # squeue -u $USER -O jobid,state,nodelist
 JOBID               STATE               NODELIST            
@@ -119,15 +119,15 @@ JOBID               STATE               NODELIST
 ```
 
 #### then use srun to connect to your instance/job
-```
+```bash
 srun --jobid=<job_id> --overlap --pty bash -l 
 ```
 
 ### check that you have the right allocation
-```
+```bash
 nvidia-smi
 ```
-```
+```bash
 #example
 $ nvidia-smi
 Mon Jul  7 09:03:26 2025       
@@ -163,16 +163,16 @@ TODO: add an example of downloading models and containers
 
 Alvis has a storage solution called Mimer that is avaiable on both login nodes and the GPU nodes.
 
-```
+```bash
 cd /mimer/NOBACKUP/groups/<project_id>
 ```
 
 ### start container
-```
+```bash
 apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_container> <name_and_path_to_appcontainer>
 ```
 
-```
+```bash
 #example:
 $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 ```
@@ -181,7 +181,7 @@ $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 
 TODO: add a multi node example
 
-```
+```bash
 # example:
 $ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
 ```
@@ -197,32 +197,32 @@ curl http://$(hostname -I | awk '{print $1}'):8000/v1/models
 
 #### find out the hostname on the remote gpu instance
 
-```
+```bash
 hostname
 ```
 
-```
+```bash
 #example:
 $ hostname
 > alvis4-41
 
-```
+```bash
 #### setup tunnel on your local machine
-```
+```bash
 ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_remote>
 ```
 
-```
+```bash
 #example:
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
 ### test from your local machine
-```
+```bash
 curl http://localhost:8000/v1/models
 ```
 
-```
+```bash
 #example:
 $ curl http://localhost:8000/v1/models
 {"object":"list","data":[{"id":"./models/Qwen3-32B-FP8","object":"model","created":1751877546,"owned_by":"vllm","root":"./models/Qwen3-32B-FP8","parent":null,"max_model_len":40960,"permission":[{"id":"modelperm-afe147129dea4bffb7d5cdc88052b790","object":"model_permission","created":1751877546,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}% 
