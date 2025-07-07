@@ -24,6 +24,10 @@ However, when working from home you need a suitable VPN. Sadly the KI VPN won't 
 
 Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
 
+### Stick to bash
+
+Alvis are happy to provide zsh and fish but unless you know what you are doing stick to bash. The interaction between shells, slurm, containers etc is annonying to keep track of and fix.
+
 ## Gettings started
 
 ## local ssh config
@@ -31,6 +35,9 @@ Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Ber
 TODO: add alvis to ~/.ssh/config
 
 TODO: setup credentials
+
+## remote setup
+
 
 ## Check for available GPU nodes
 
