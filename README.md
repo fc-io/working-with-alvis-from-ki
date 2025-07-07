@@ -96,19 +96,20 @@ srun --pty bash -l
 ## first, quick check, to see all running jobs
 ## then use srun to connect to your instance/job
 ```
-$ squeue -u $USER -O jobid,state,nodelist
-```
-
-example:
-
-```
 squeue -u $USER -O jobid,state,nodelist
+```
+
+
+
+```
+#example:
+# squeue -u $USER -O jobid,state,nodelist
 JOBID               STATE               NODELIST            
 4732902             COMPLETING          alvis3-35           
 ```
 
 ```
-srun --jobid=[jobid] --overlap --pty bash -l 
+srun --jobid=<job_id> --overlap --pty bash -l 
 ```
 
 # check that you have the right allocation
@@ -148,31 +149,62 @@ TODO: add an example
 
 ## cd to container location
 
+```
 cd /mimer/NOBACKUP/groups/<project_id>
+```
 
-# start container
-apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
-vllm serve ./models/Qwen3-32B-FP8  --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
+## start container
+```
+apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_container> <name_and_path_to_appcontainer>
+```
 
-## after "INFO:     Application startup complete." test by curling the http server from the host of the container (alvis4-41 for example)
+```
+#example:
+$ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
+```
+
+## start vllm with tool use and tool auto support
+```
+# example:
+$ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
+```
+
+## after "INFO: Application startup complete." you can test by curling the http server from the host of the container
+
+but you can also skip this and test from your local machine
+
 ``` bash
 curl http://$(hostname -I | awk '{print $1}'):8000/v1/models
 ```
-# find out the hostname
+## test on your local machine
+
+### find out the hostname on the remote gpu instance
+
 ```
+hostname
+```
+
+```
+#example:
 $ hostname
 > alvis4-41
+
 ```
-## setup tunnel on local machine
+### setup tunnel on your local machine
 ```
-ssh -N -L 8000:alvis4-41:8000  alvis2
+ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_remote>
 ```
 
-## test
+```
+example:
+$ ssh -N -L 8000:alvis4-41:8000  alvis2
+```
+
+## test from your local machine
+```
 curl http://localhost:8000/v1/models
-
-vllm serve ./models/Qwen3-32B-FP8 --reasoning-parser deepseek_r1
+```
 
 ## Devloping 
 
-Alvis provide a number of different ways of developing on the system. Most of them are subpar. All of them really, but it could be worse. To keep sane I recommend you put the blindfolds on and only work with apptainer.
+Alvis provide a number of different ways of developing on the system. To keep sane I recommend you put the blindfolds on and only work with apptainer.
