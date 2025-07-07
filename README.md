@@ -147,6 +147,8 @@ You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs 
 
 You can also change the `:A100` part if you want a node with different GPUs.
 
+See the [docs](https://slurm.schedmd.com/salloc.html) for more nice arguments.
+
 ### shell into the allocated node 
 
 (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
