@@ -6,33 +6,15 @@ Hopefully, helpful info for budding AI researchers at KI.
 
 This is for doing interactive development. These instructions are not for you if you need long-running jobs or already have an established use case. 
 
+These tips are definitly for you if you felt the instructions at [C3SE](https://www.c3se.chalmers.se/documentation/submitting_jobs/interactive_jobs/) a bit lacking.
+
 ## Get Access
 
 Apply at <https://supr.naiss.se/>.
 
 You must, in general, be a PhD student or above. Ask your supervisor to apply on your behalf if you ain't qualified, yet ;).
 
-## Caveats
-
-### These instructions
-
-I wrote these instructions after the fact. So some of the setup is from memory and not tested. Feel free to reach out if you encounter any problems or have suggestions.
-
-### Working remotly (VPN)
-
-When ssh-ing to alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
-
-However, when working from home you need a suitable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN (eduVPN).
-
-### GPUs on Alvis
-
-Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
-
-### Stick to Bash
-
-Alvis are happy to provide zsh and fish but unless you know what you are doing stick to bash. The interaction between shells, slurm, containers etc is annonying to keep track of and fix.
-
-## Gettings started
+## Getting started
 
 ### For super beginners
 
@@ -40,17 +22,43 @@ Alvis are happy to provide zsh and fish but unless you know what you are doing s
 * Watch some youtube videos about how to work faster with the terminal, or what the best terminal setup is.
 * Remember that you always can ask your favorite chat-llm for help explaining the different commands.
 
-## local ssh config
+## Local SSH Config
 
-### setup an ssh key
+### Set up an SSH key
 
-You can follow instructions at [github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on how to generate an ssh key.
+You can follow instructions at [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on how to generate an ssh key.
 
-Then add the public key to ~/.ssh/authorized_keys
+Then add the public key to ~/.ssh/authorized_keys on alvis.
+
+Try to avoid using old RSA signatures and `scp` as in the [C3se example as of 2025-07-07](https://www.c3se.chalmers.se/documentation/connecting/ssh/#setting-up-a-hostname-alias) and instead use ed25519 and `ssh-copy-id`. More secure and faster.
+
+```bash
+# example
+# On the local machine:
+$ ssh-keygen -t ed25519 -a 100 -C "your_email@domain"
+$ ssh-copy-id -i ~/.ssh/id_ed25519.pub user_id@alvis2.c3se.chalmers.se
+```
+
+I don't think it's needed to update the permissions manually if you use ssh-copy-id instead of scp. But if needed (mening you still are forced to use your password) one can do. 
+
+```bash
+# example
+# On the remote machine:
+$ ls -ld ~/.ssh ~/.ssh/authorized_keys
+drwx------ 2 user_id user_id 2880 Jul  7 12:02 /cephyr/users/user_id/Alvis/.ssh
+-rw------- 1 user_id user_id   90 Jul  7 12:02 /cephyr/users/user_id/Alvis/.ssh/authorized_keys
+
+## if not showing drwx------ for ~/.ssh and -rw------- for ~/.ssh/authorized_keys then do
+$ chmod 700 ~/.ssh
+$ chmod 600 ~/.ssh/authorized_keys
+```
 
 ### add an alvis login node to your ~/.ssh/config 
 
 ```bash
+# example
+# On the local machine:
+mkdir ~/.ssh # if not existing already (but it should, after you've run ssh-keygen)
 cd ~/.ssh
 touch config # if not existing already
 vi config # or edit with some other editor you prefer
@@ -89,7 +97,7 @@ column -t
 
 ```bash
 # example:
-$ sinfo [as above...]
+$ sinfo <as above...>
 NODE       STATE  GRES           GRES-USED      CPUs  MEM(MB)
 alvis3-01  idle   gpu:A100:4     gpu:A100:0     64    512000
 alvis3-02  mix    gpu:A100:4     gpu:A100:1     64    512000
@@ -110,6 +118,8 @@ alvis3-41  mix    gpu:A100fat:4  gpu:A100fat:3  64    1024000
 
 ## Get a node with one GPU
 
+TODO: add a multi-node example
+
 ### Get your project id
 
 First, get your project id. You can use `projinfo` to find it if you don't already know it.
@@ -119,7 +129,8 @@ projinfo
 ```
 
 ```bash
-#example
+# example
+# On the remote machine:
 $ projinfo
  Project                Used[h]         Allocated[h]      Queue
     User
@@ -149,7 +160,8 @@ squeue -u $USER -O jobid,state,nodelist
 ```
 
 ```bash
-# example:
+# example
+# On the remote machine
 $ squeue -u $USER -O jobid,state,nodelist
 JOBID               STATE               NODELIST            
 4732902             COMPLETING          alvis3-35           
@@ -166,7 +178,8 @@ nvidia-smi
 ```
 
 ```bash
-# example:
+# example
+# On the remote machine
 $ nvidia-smi
 Mon Jul  7 09:03:26 2025       
 +-----------------------------------------------------------------------------------------+
@@ -189,7 +202,7 @@ Mon Jul  7 09:03:26 2025
 |  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
 
-# 0MiB/81920MiB indicate that we have an a100fat allocated and ready to use
+# 0MiB/81920MiB indicates that we have an a100fat allocated and ready to use
 ```
 
 ## Run inference
@@ -199,7 +212,7 @@ TODO: add an example of downloading models and containers
 
 ### cd to container location
 
-Alvis has a storage solution called Mimer that is avaiable on both login nodes and the GPU nodes.
+Alvis has a storage solution called Mimer that is available on both login nodes and the GPU nodes.
 
 ```bash
 cd /mimer/NOBACKUP/groups/<project_id>
@@ -211,26 +224,33 @@ apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_containe
 ```
 
 ```bash
-# example:
+# example
+# On the remote machine, in the GPU instance:
 $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 ```
 
 ### start vllm with tool use and tool auto support
 
-TODO: add a multi node example
-
 ```bash
-# example:
+# example
+# On the remote machine, inside the container:
 $ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
 ```
 
-### after "INFO: Application startup complete." you can test by curling the http server from the host of the container
+* `--enable-auto-tool-choice` is a good default as some agentic framworks require it and you will get 400 bad request when calling without it.
+* modify the `--tool-call-parser` if you are using another model that support another parser than `hermes`.
+* remove `--enable-auto-tool-choice` and `--tool-call-parser hermes` if you don't want tool calling or your model don't support it
+* remove `--reasoning-parser deepseek_r1` if you don't want reasoning
+* modify the `--reasoning-parser` if you are using another model that support another parser than `deepseek_r1`.
+
+### after "INFO: Application startup complete." you can test by curling the HTTP server from the host of the container
 
 but you can also skip this and test from your local machine
 
 ``` bash
 curl http://$(hostname -I | awk '{print $1}'):8000/v1/models
 ```
+
 ### test on your local machine
 
 #### find out the hostname on the remote gpu instance
@@ -240,18 +260,20 @@ hostname
 ```
 
 ```bash
-# example:
+# example
+# On the remote machine:
 $ hostname
 alvis4-41
 ```
 
-#### setup tunnel on your local machine
+#### Set up a tunnel on your local machine
 ```bash
 ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_remote>
 ```
 
 ```bash
-# example:
+# example
+# On the local machine:
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
@@ -261,11 +283,36 @@ curl http://localhost:8000/v1/models
 ```
 
 ```bash
-# example:
+# example
+# On the local machine:
 $ curl http://localhost:8000/v1/models
 {"object":"list","data":[{"id":"./models/Qwen3-32B-FP8","object":"model","created":1751877546,"owned_by":"vllm","root":"./models/Qwen3-32B-FP8","parent":null,"max_model_len":40960,"permission":[{"id":"modelperm-afe147129dea4bffb7d5cdc88052b790","object":"model_permission","created":1751877546,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}% 
 ```
 
-## Developing 
+### Congrats
 
-Alvis provide a number of different ways of developing on the system. To keep sane I recommend you put the blindfolds on and only work with apptainer.
+You should now be able to connect to your model on your local machine as if it were on your own localhost. Happy promting.
+
+## Caveats
+
+### These instructions
+
+I wrote these instructions after the fact, so some of the setup is from memory and not tested. Feel free to reach out if you encounter any problems or have suggestions.
+
+### Working remotely (VPN)
+
+When SSH-ing to alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
+
+However, when working from home you need a suitable VPN. Sadly, the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through the Chalmers VPN (eduVPN).
+
+### GPUs on Alvis
+
+Alvis, sadly, doesn't have any Hopper or Blackwell GPUs so try to get access to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
+
+### Stick to Bash
+
+Alvis is happy to provide zsh and fish but unless you know what you are doing stick to bash. The interaction between shells, slurm, containers, etc. is annoying to keep track of and fix.
+
+### ulimit
+
+vLLM will complain about ulimit – me knowing this limit can't be raised without bribing the admins. Though, hopefully you should be fine with the default limit.
