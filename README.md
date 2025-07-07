@@ -4,7 +4,7 @@ How to get started developing agents and doing inference on the Alvis supercompu
 
 Hopefully, helpful info for budding AI researchers at KI.
 
-This is for doing interactive development. These instructions are not for you if you need long running jobs or already have an establised use case. 
+This is for doing interactive development. These instructions are not for you if you need long-running jobs or already have an established use case. 
 
 ## Get Access
 
