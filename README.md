@@ -26,7 +26,7 @@ You must, in general, be a PhD student or above. Ask your supervisor to apply on
 
 You can follow instructions at [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on how to generate an ssh key.
 
-Then add the public key to ~/.ssh/authorized_keys on alvis.
+Then add the public key to ~/.ssh/authorized_keys on Alvis.
 
 Try to avoid using old RSA signatures and `scp` as in the [C3se example as of 2025-07-07](https://www.c3se.chalmers.se/documentation/connecting/ssh/#setting-up-a-hostname-alias) and instead use ed25519 and `ssh-copy-id`. More secure and faster.
 
@@ -51,7 +51,7 @@ $ chmod 700 ~/.ssh
 $ chmod 600 ~/.ssh/authorized_keys
 ```
 
-### add an alvis login node to your ~/.ssh/config 
+### add an Alvis login node to your ~/.ssh/config 
 
 ```bash
 # example
@@ -319,7 +319,7 @@ I wrote these instructions after the fact, so some of the setup is from memory a
 
 ### Working remotely (VPN)
 
-When SSH-ing to alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
+When SSH-ing to Alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
 
 However, when working from home you need a suitable VPN. Sadly, the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through the Chalmers VPN (eduVPN).
 
