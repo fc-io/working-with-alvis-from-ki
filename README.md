@@ -14,6 +14,10 @@ You must be a PhD student or above – otherwise ask your supervisor to apply on
 
 ## Caveats
 
+### These instructions
+
+I wrote these instructions after the fact. So some of the setup is from memory and not tested. Feel free to reach out if you encounter any problems or have suggestions.
+
 ### Working remotly (VPN)
 
 When ssh-ing to alvis you need to be on Sunet. You are automatically on Sunet on the KI wired network or eduroam. 
@@ -32,9 +36,33 @@ Alvis are happy to provide zsh and fish but unless you know what you are doing s
 
 ## local ssh config
 
-TODO: add alvis to ~/.ssh/config
+### setup an ssh key
 
-TODO: setup credentials
+You can follow instructions at [github](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on how to generate an ssh key.
+
+Then add the public key to ~/.ssh/authorized_keys
+
+### add an alvis login node to your ~/.ssh/config 
+
+```bash
+cd ~/.ssh
+touch config # if not existing already
+vi config # or edit with some other editor you prefer
+```
+
+and add
+
+```bash
+Host alvis2
+    IdentityFile   ~/.ssh/id_ed25519
+    IdentitiesOnly yes           # only use the key(s) you list    
+    HostName alvis2.c3se.chalmers.se
+    User frcarls
+    ControlMaster auto
+    ControlPersist yes
+    RequestTTY yes 
+    ControlPath ~/.ssh/ssh_mux_%L_%h_%r
+```
 
 ## remote setup
 
