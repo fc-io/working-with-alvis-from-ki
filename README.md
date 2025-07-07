@@ -29,6 +29,7 @@ Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Ber
 ## local ssh config
 
 TODO: add alvis to ~/.ssh/config
+
 TODO: setup credentials
 
 ## Check for available GPU nodes
