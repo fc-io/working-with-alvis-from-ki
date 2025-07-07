@@ -204,7 +204,7 @@ hostname
 ```bash
 #example:
 $ hostname
-> alvis4-41
+alvis4-41
 ```
 
 #### setup tunnel on your local machine
