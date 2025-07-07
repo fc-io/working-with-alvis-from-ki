@@ -22,6 +22,32 @@ You must, in general, be a PhD student or above. Ask your supervisor to apply on
 
 ## Local SSH Config
 
+### Test that your credentials work
+
+```
+ssh <user_id>@alvis2.c3se.chalmers.se
+```
+
+```
+# example
+# On the local machine:
+$ ssh user_id@alvis2.c3se.chalmers.se
+user_id@alvis2.c3se.chalmers.se's password: 
+
+# On the remote machine:
+   █  █▙   █ ▟  █  █      alvis2 is a shared login node
+   █  █▜▙  █▟▛  █  █  ▟   Use with care and submit jobs
+   █  █ ▜  █▛▟  █  █ ▟█   to the queue.
+  ▟█  █    █▟▛  █  █▟▛█
+ ▟▛█  █    █▛   █  █▛ █
+ ▛ █  █    █    █  ▛  █
+   █  █    █    █     █
+
+For support, see https://www.c3se.chalmers.se/support
+
+For intro, see https://indico.chalmers.se/category/39/
+```
+
 ### Set up an SSH key
 
 You can follow instructions at [GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) on how to generate an ssh key.
