@@ -222,6 +222,6 @@ $ ssh -N -L 8000:alvis4-41:8000  alvis2
 curl http://localhost:8000/v1/models
 ```
 
-## Devloping 
+## Developing 
 
 Alvis provide a number of different ways of developing on the system. To keep sane I recommend you put the blindfolds on and only work with apptainer.
