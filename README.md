@@ -314,3 +314,8 @@ Alvis is happy to provide zsh and fish but unless you know what you are doing st
 ### ulimit
 
 vLLM will complain about ulimit – me knowing this limit can't be raised without bribing the admins. Though, hopefully you should be fine with the default limit.
+
+### Sensitive data
+
+At KI we deal with a lot of sensitive data (remember, even pseudonymized data is sensitive data). A NAISS-affiliated supercomputer might not be a good choice for that kind of data. Make sure to consider this.
+
