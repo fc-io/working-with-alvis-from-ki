@@ -8,9 +8,9 @@ This is for doing variable interactive development. If you need long running job
 
 ## Get Access
 
-Apply for acess at https://supr.naiss.se/
+Apply at <https://supr.naiss.se/>.
 
-You need to be at least at the level of phd (or get help from your supervior) to be granted an allocation.
+You must be a PhD student or above – otherwise ask your supervisor to apply on your behalf.
 
 ## Caveats
 
@@ -24,7 +24,7 @@ However, when working from home you need a suitable VPN. Sadly the KI VPN won't 
 
 Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
 
-### Stick to bash
+### Stick to Bash
 
 Alvis are happy to provide zsh and fish but unless you know what you are doing stick to bash. The interaction between shells, slurm, containers etc is annonying to keep track of and fix.
 
@@ -160,6 +160,8 @@ Mon Jul  7 09:03:26 2025
 TODO: add an example of downloading models and containers
 
 ### cd to container location
+
+Alvis has a storage solution called Mimer that is avaiable on both login nodes and the GPU nodes.
 
 ```
 cd /mimer/NOBACKUP/groups/<project_id>
