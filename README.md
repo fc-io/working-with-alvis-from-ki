@@ -1,10 +1,10 @@
 # Working with Alvis (and other NAISS affiliated supercomputers) for researchers at the Karolinska Institute.
 
-Hopefully, helpful info for budding AI researchers at KI.
-
 How to get started developing agents and doing inference on the Alvis supercomputer.
 
-This is for doing variable interactive development. If you need long running jobs, or have a set use case then use more scripts and sbatch.
+Hopefully, helpful info for budding AI researchers at KI.
+
+This is for doing interactive development. These instructions are not for you if you need long running jobs or already have an establised use case. 
 
 ## Get Access
 
