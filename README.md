@@ -1,6 +1,6 @@
 # Working with Alvis for researchers at the Karolinska Institute.
 
-Hopefully, helpful info for AI researchers at KI.
+Hopefully, helpful info for budding AI researchers at KI.
 
 How to get started developing agents and doing inference on the Alvis supercomputer.
 
