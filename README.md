@@ -10,7 +10,7 @@ This is for doing variable interactive development. If you need long running job
 
 Apply at <https://supr.naiss.se/>.
 
-You must be a PhD student or above – otherwise ask your supervisor to apply on your behalf.
+You must, in general, be a PhD student or above. Ask your supervisor to apply on your behalf if you ain't qualified yet ;).
 
 ## Caveats
 
