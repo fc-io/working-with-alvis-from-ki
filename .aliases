@@ -1,0 +1,59 @@
+# Easier navigation: .., ..., ...., ....., ......
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# Shortcuts
+alias dev="cd /mimer/NOBACKUP/groups/<replace_with_your_project_id>/dev"
+alias h="history"
+
+# Terminal
+alias la="ls -laFG"
+
+# Git (from prezto/modules/git/alias.zsh)
+alias gc='git commit --verbose'
+alias gca='git commit --verbose --all'
+alias gcam='git commit --all --message'
+alias gcm='git commit --message'
+alias gl='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
+alias gp='git push'
+alias gs='git status'
+
+# A100 GPU status
+si () {
+sinfo --Node --states=idle,mix --noheader \
+      -O NodeList:12,StateCompact:8,Gres:90,GresUsed:90,CPUs:21,Memory:10 |
+awk 'BEGIN { printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
+                   "NODE","STATE","GRES","GRES-USED","CPUs","MEM(MiB)" }
+     $2!="plnd" && $3~/gpu:A100/ {
+                   sub(/\(.*/,"",$3); sub(/\(.*/,"",$4);
+                   printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
+                          $1,$2,$3,$4,$5,$6 }' |
+column -t
+}
+
+# Helper function for GPU allocation
+_allocate_gpu () {
+      local gpu_type=$1
+      local hours=${2:-3}  # Default to 3 hours if no argument provided
+      local hours_int=${hours%.*}  # Integer part
+      local minutes=0
+
+      # Handle decimal hours properly
+      if [[ $hours == *"."* ]]; then
+          local decimal_part="0.${hours#*.}"
+          minutes=$(echo "$decimal_part * 60" | bc | cut -d. -f1)
+      fi
+
+      salloc -A <replace_with_your_project_id> -N1 --gres=gpu:${gpu_type}:1 --time=${hours_int}:${minutes}:00
+}
+
+a100 () {
+      _allocate_gpu "A100" "$1"
+}
+
+a100fat () {
+      _allocate_gpu "A100fat" "$1"
+}
