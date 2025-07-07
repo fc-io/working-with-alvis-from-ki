@@ -16,7 +16,7 @@ You must, in general, be a PhD student or above. Ask your supervisor to apply on
 
 ### For super beginners
 
-* If you haven't used the terminal before – when, in the instructions you encounter `<user_id>` it means that whole thing including the arrows needs to be replaced. 
+* If you haven't used the terminal before – when, in the instructions you encounter `<user_id>` it means that the whole thing including the arrows needs to be replaced. 
 * Watch some youtube videos about how to work faster with the terminal, or what the best terminal setup is.
 * Remember that you always can ask your favorite chat-llm for help explaining the different commands.
 
