@@ -149,7 +149,7 @@ Mon Jul  7 09:03:26 2025
 
 ## download/setup your dev environment
 
-TODO: add an example
+TODO: add an example of downloading models and containers
 
 ## cd to container location
 
@@ -168,6 +168,9 @@ $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 ```
 
 ## start vllm with tool use and tool auto support
+
+TODO: add a multi node example
+
 ```
 # example:
 $ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
