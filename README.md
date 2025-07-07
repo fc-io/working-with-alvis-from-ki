@@ -10,7 +10,7 @@ This is for doing variable interactive development. If you need long running job
 
 Apply at <https://supr.naiss.se/>.
 
-You must, in general, be a PhD student or above. Ask your supervisor to apply on your behalf if you ain't qualified yet ;).
+You must, in general, be a PhD student or above. Ask your supervisor to apply on your behalf if you ain't qualified, yet ;).
 
 ## Caveats
 
@@ -33,6 +33,10 @@ Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Ber
 Alvis are happy to provide zsh and fish but unless you know what you are doing stick to bash. The interaction between shells, slurm, containers etc is annonying to keep track of and fix.
 
 ## Gettings started
+
+### For super beginners
+
+If you haven't used the terminal before – when, in the instructions you encounter `<user_id>` it means that whole things including the arrows needs to be replaced. Also remember that you always can ask your favorite chat-llm for help explaining the different commands.
 
 ## local ssh config
 
@@ -57,7 +61,7 @@ Host alvis2
     IdentityFile   ~/.ssh/id_ed25519
     IdentitiesOnly yes           # only use the key(s) you list    
     HostName alvis2.c3se.chalmers.se
-    User frcarls
+    User <replace_with_your_username>
     ControlMaster auto
     ControlPersist yes
     RequestTTY yes 
