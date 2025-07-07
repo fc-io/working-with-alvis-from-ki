@@ -1,10 +1,10 @@
 # Working with Alvis for researchers at the Karolinska Institute.
 
-Hopefully, helpful info for KI researchers.
+Hopefully, helpful info for AI researchers at KI.
 
-How to get started developing AI on the Alvis supercomputer.
+How to get started developing agents and doing inference on the Alvis supercomputer.
 
-This is for doing variable interactive development. If you need long running jobs use sbatch.
+This is for doing variable interactive development. If you need long running jobs, or have a set use case then use more scripts and sbatch.
 
 ## Get Access
 
@@ -18,9 +18,14 @@ You need to be at least at the level of phd (or get help from your supervior) to
 
 When ssh-ing to alvis you need to be on sunet. You are automatically on sunet on the KI wired network or eduroam. 
 
-However, when working from home you need a sutable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN(eduVPN).
+However, when working from home you need a sutable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN (eduVPN).
 
 ## Gettings started
+
+## local ssh config
+
+TODO: add alvis to ~/.ssh/config
+TODO: setup credentials
 
 ## Check for available GPU nodes
 
@@ -35,6 +40,7 @@ awk 'BEGIN { printf "%-12s %-8s %-35s %-35s %21s %10s\n", \
                           $1,$2,$3,$4,$5,$6 }' |
 column -t
 ```
+
 ```bash
 # example:
 $ sinfo [as above...]
@@ -105,11 +111,44 @@ JOBID               STATE               NODELIST
 srun --jobid=[jobid] --overlap --pty bash -l 
 ```
 
-## cd
-cd /mimer/NOBACKUP/groups/clin-agent-bench/dev/
-
 # check that you have the right allocation
+```
 nvidia-smi
+```
+```
+#example
+$ nvidia-smi
+Mon Jul  7 09:03:26 2025       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 575.57.08              Driver Version: 575.57.08      CUDA Version: 12.9     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-80GB          On  |   00000000:31:00.0 Off |                    0 |
+| N/A   26C    P0             58W /  500W |       0MiB /  81920MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+#0/81920MiB indicate that we have a a100fat allocated and ready to use
+```
+
+## download/setup your dev environment
+
+TODO: add an example
+
+## cd to container location
+
+cd /mimer/NOBACKUP/groups/<project_id>
 
 # start container
 apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
