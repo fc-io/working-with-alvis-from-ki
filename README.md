@@ -20,6 +20,10 @@ When ssh-ing to alvis you need to be on sunet. You are automatically on sunet on
 
 However, when working from home you need a sutable VPN. Sadly the KI VPN won't help you out. What you can do instead is to use the Chalmers credentials provided to you when getting access to Alvis to connect through chalmers VPN (eduVPN).
 
+### GPUs on Alvis
+
+Alvis, sadly, don't have any Hopper or Blackwell gpus so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
+
 ## Gettings started
 
 ## local ssh config
