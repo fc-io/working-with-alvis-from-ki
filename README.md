@@ -205,8 +205,8 @@ hostname
 #example:
 $ hostname
 > alvis4-41
+```
 
-```bash
 #### setup tunnel on your local machine
 ```bash
 ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_remote>
