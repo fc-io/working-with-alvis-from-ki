@@ -22,7 +22,7 @@ However, when working from home you need a sutable VPN. Sadly the KI VPN won't h
 
 ### GPUs on Alvis
 
-Alvis, sadly, don't have any Hopper or Blackwell gpus so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
+Alvis, sadly, don't have any Hopper or Blackwell GPUs so try to get acess to Berzelius if you can. Performance and setup will be a lot easier on GPUs of a newer generation than Ampere.
 
 ## Gettings started
 
