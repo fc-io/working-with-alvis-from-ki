@@ -1,6 +1,6 @@
 # Working with Alvis (and other NAISS affiliated supercomputers) for researchers at the Karolinska Institute.
 
-How to get started doing inference and developing agents on the Alvis supercomputer.
+Basically, how to get started doing inference and developing agents.
 
 Hopefully, helpful info for budding AI researchers at KI.
 
