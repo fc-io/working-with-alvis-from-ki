@@ -36,7 +36,9 @@ Alvis are happy to provide zsh and fish but unless you know what you are doing s
 
 ### For super beginners
 
-If you haven't used the terminal before – when, in the instructions you encounter `<user_id>` it means that whole things including the arrows needs to be replaced. Also remember that you always can ask your favorite chat-llm for help explaining the different commands.
+* If you haven't used the terminal before – when, in the instructions you encounter `<user_id>` it means that whole things including the arrows needs to be replaced. 
+* Watch some youtube videos about how to work faster with the terminal, or what the best terminal setup is.
+* Remember that you always can ask your favorite chat-llm for help explaining the different commands.
 
 ## local ssh config
 
