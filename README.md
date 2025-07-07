@@ -213,13 +213,19 @@ ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_re
 ```
 
 ```
-example:
+#example:
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
 ### test from your local machine
 ```
 curl http://localhost:8000/v1/models
+```
+
+```
+#example:
+$ curl http://localhost:8000/v1/models
+{"object":"list","data":[{"id":"./models/Qwen3-32B-FP8","object":"model","created":1751877546,"owned_by":"vllm","root":"./models/Qwen3-32B-FP8","parent":null,"max_model_len":40960,"permission":[{"id":"modelperm-afe147129dea4bffb7d5cdc88052b790","object":"model_permission","created":1751877546,"allow_create_engine":false,"allow_sampling":true,"allow_logprobs":true,"allow_search_indices":false,"allow_view":true,"allow_fine_tuning":false,"organization":"*","group":null,"is_blocking":false}]}]}% 
 ```
 
 ## Developing 
