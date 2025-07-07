@@ -1,4 +1,4 @@
-# Working with Alvis for researchers at the Karolinska Institute.
+# Working with Alvis (and other NAISS affiliated supercomputers) for researchers at the Karolinska Institute.
 
 Hopefully, helpful info for budding AI researchers at KI.
 
