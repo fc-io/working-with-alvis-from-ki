@@ -254,13 +254,14 @@ TODO: add an example of downloading models and containers
 
 ### cd to container location
 
-Alvis has a storage solution called Mimer that is available on both login nodes and the GPU nodes.
+Alvis has a storage solution called Mimer that is available on both login nodes and the GPU nodes. It's very convenient to store everything related to your project in that space.
 
 ```bash
 cd /mimer/NOBACKUP/groups/<project_id>
 ```
 
 ### start container
+
 ```bash
 apptainer shell --nv --bind <path_to_models_on_host>:<path_to_models_in_container> <name_and_path_to_appcontainer>
 ```
@@ -279,15 +280,15 @@ $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 $ vllm serve ./models/Qwen3-32B-FP8  --enable-auto-tool-choice --tool-call-parser hermes --reasoning-parser deepseek_r1 --host 0.0.0.0 --port 8000
 ```
 
-* `--enable-auto-tool-choice` is a good default as some agentic framworks require it and you will get 400 bad request when calling without it.
-* modify the `--tool-call-parser` if you are using another model that support another parser than `hermes`.
+* `--enable-auto-tool-choice` is a good default as some agentic framworks require it. If you use a framework that do requrie it then you would get a 400 bad request when calling without it.
+* modify the `--tool-call-parser` if you are using another model that support another parser than `hermes`. Most models have there own parser for this.
 * remove `--enable-auto-tool-choice` and `--tool-call-parser hermes` if you don't want tool calling or your model don't support it
 * remove `--reasoning-parser deepseek_r1` if you don't want reasoning
 * modify the `--reasoning-parser` if you are using another model that support another parser than `deepseek_r1`.
 
 ### after "INFO: Application startup complete." you can test by curling the HTTP server from the host of the container
 
-but you can also skip this and test from your local machine
+But you can also skip this and test from your local machine right away – see below.
 
 ``` bash
 curl http://$(hostname -I | awk '{print $1}'):8000/v1/models
@@ -337,7 +338,7 @@ You should now be able to connect to your model on your local machine as if it w
 
 ## Stop GPU Allocation
 
-You can recover any GPU hours left if you are done before the requested time has run out.
+You can recover any GPU hours left if you are done before the requested time has run out. This of course a good practice.
 
 First find the jobid.
 
