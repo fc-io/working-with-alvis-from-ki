@@ -188,8 +188,8 @@ See the [docs](https://slurm.schedmd.com/salloc.html) for more nice arguments.
 ```bash
 srun --pty bash -l 
 ```
-### if you want an additional connection from another node
-#### first, quick check, to see all running jobs
+### if you want an additional connection to the GPU node 
+#### first, check, to see all running jobs
 
 ```bash
 squeue -u $USER -O jobid,state,nodelist
@@ -208,14 +208,20 @@ JOBID               STATE               NODELIST
 srun --jobid=<job_id> --overlap --pty bash -l 
 ```
 
+```bash
+# example
+# On the remote machine
+srun --jobid=4732902 --overlap --pty bash -l 
+```
 ### check that you have the right allocation
 ```bash
+# example
+# On the remote machine, 
 nvidia-smi
 ```
 
 ```bash
 # example
-# On the remote machine
 $ nvidia-smi
 Mon Jul  7 09:03:26 2025       
 +-----------------------------------------------------------------------------------------+
