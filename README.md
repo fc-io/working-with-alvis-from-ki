@@ -320,7 +320,7 @@ ssh -N -L <local_port>:<hostname_of_gpu_instance>:<remote_port>  <hostname_of_re
 $ ssh -N -L 8000:alvis4-41:8000  alvis2
 ```
 
-### test from your local machine
+#### test from your local machine
 ```bash
 curl http://localhost:8000/v1/models
 ```
