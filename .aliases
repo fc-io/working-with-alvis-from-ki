@@ -6,7 +6,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
 # Shortcuts
-alias dev="cd /mimer/NOBACKUP/groups/<replace_with_your_project_id>/dev"
+alias dev="cd /mimer/NOBACKUP/groups/clin-agent-bench/dev"
 alias h="history"
 
 # Terminal
@@ -47,7 +47,7 @@ _allocate_gpu () {
           minutes=$(echo "$decimal_part * 60" | bc | cut -d. -f1)
       fi
 
-      salloc -A <replace_with_your_project_id> -N1 --gres=gpu:${gpu_type}:1 --time=${hours_int}:${minutes}:00
+      salloc -A NAISS2025-22-715 -N1 --gres=gpu:${gpu_type}:1 --time=${hours_int}:${minutes}:00
 }
 
 a100 () {
@@ -56,4 +56,16 @@ a100 () {
 
 a100fat () {
       _allocate_gpu "A100fat" "$1"
+}
+
+p () {
+  srun --pty bash -l 
+}
+
+a () {
+  apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
+}
+
+sq () {
+  squeue -u $USER -O jobid,state,nodelist
 }
