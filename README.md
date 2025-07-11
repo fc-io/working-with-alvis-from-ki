@@ -171,7 +171,17 @@ Allocate yourself a GPU node.
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --no-shell --time=3:00:00 
 ```
 
+```bash
+# example
+# On the remote machine
+$ salloc -A NAISS_proj_id -N1 --gres=gpu:A100:1 --no-shell --time=3:00:00 
+salloc: Granted job allocation 4765049
+salloc: Waiting for resource configuration
+salloc: Nodes alvis4-39 are ready for job
+```
 If a node of the specified type isn't available, you will be automatically queued.
+
+Passing the `--no-shell` flag keeps the allocation alive even if the originating node stops.
 
 You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs on that node. I.e `--gres=gpu:A100:4` for four.
 
@@ -184,10 +194,18 @@ See the [docs](https://slurm.schedmd.com/salloc.html) for more nice arguments.
 (don't ssh into the node as it can mess with the slurm scheduler if you have not yet tied up the allocation)
 
 ```bash
-srun --pty bash -l 
+srun --jobid=<job_id> --overlap --pty bash -l 
 ```
-### if you want an additional connection to the GPU node 
-#### first, check, to see all running jobs
+
+```bash
+# example
+# On the remote machine
+srun --jobid=4765049 --overlap --pty bash -l 
+```
+
+#### find your jobid
+
+If you somehow lost track of your jobid (it's printed when you salloc) you can find all your running jobs.
 
 ```bash
 squeue -u $USER -O jobid,state,nodelist
@@ -198,19 +216,10 @@ squeue -u $USER -O jobid,state,nodelist
 # On the remote machine
 $ squeue -u $USER -O jobid,state,nodelist
 JOBID               STATE               NODELIST            
-4732902             COMPLETING          alvis3-35           
+4765049             COMPLETING          alvis3-35           
 ```
 
-#### then use srun to connect to your instance/job
-```bash
-srun --jobid=<job_id> --overlap --pty bash -l 
-```
 
-```bash
-# example
-# On the remote machine
-srun --jobid=4732902 --overlap --pty bash -l 
-```
 ### check that you have the right allocation
 ```bash
 # example
