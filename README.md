@@ -281,6 +281,8 @@ $ apptainer shell --nv --bind ./models:/models vllm-openai_latest.sif
 
 ### start vllm with tool use and tool auto support
 
+This is an example for running on 1 GPU. There are many options for VLLM. See the docs or ask you fav llm for suggestions.
+
 ```bash
 # example
 # On the remote machine, inside the container:
