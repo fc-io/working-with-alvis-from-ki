@@ -168,20 +168,18 @@ NAISS1234-prj-id          18.97                  250      alvis
 Allocate yourself a GPU node.
 
 ```bash
-salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --no-shell --time=3:00:00 
+salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00 
 ```
 
 ```bash
 # example
 # On the remote machine
-$ salloc -A NAISS_proj_id -N1 --gres=gpu:A100:1 --no-shell --time=3:00:00 
+$ salloc -A NAISS_proj_id -N1 --gres=gpu:A100:1 --time=3:00:00 
 salloc: Granted job allocation 4765049
 salloc: Waiting for resource configuration
 salloc: Nodes alvis4-39 are ready for job
 ```
 If a node of the specified type isn't available, you will be automatically queued.
-
-Passing the `--no-shell` flag keeps the allocation alive even if the originating node stops.
 
 You can modify the `:1` part after `--gres=gpu:A100:1` to request for more GPUs on that node. I.e `--gres=gpu:A100:4` for four.
 
