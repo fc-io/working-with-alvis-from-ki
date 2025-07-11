@@ -167,8 +167,6 @@ NAISS1234-prj-id          18.97                  250      alvis
 
 Allocate yourself a GPU node.
 
-It is usually better to `salloc` than to run `srun` right off, as the node now assigned will persist independently of the login node.
-
 ```bash
 salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
 ```
