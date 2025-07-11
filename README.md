@@ -168,7 +168,7 @@ NAISS1234-prj-id          18.97                  250      alvis
 Allocate yourself a GPU node.
 
 ```bash
-salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --time=3:00:00
+salloc -A <REPLACE_WITH_YOUR_PROJECT_ID> -N1 --gres=gpu:A100:1 --no-shell --time=3:00:00 
 ```
 
 If a node of the specified type isn't available, you will be automatically queued.
